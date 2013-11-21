@@ -13,7 +13,7 @@ Demos
 Two demo apps are included under [/demos](//github.com/peer5/P2PXHR/tree/master/demos).
 
 The [image request](https://github.com/Peer5/P2PXHR/blob/master/demos/img%20download/index.html)
-sends an xhr request for receiving an image from the network. Check out the live demo [here](http://ec2-54-215-66-22.us-west-1.compute.amazonaws.com/examples/imgUsingAPI.html)</br>
+sends an xhr request for receiving an image from the network. Check out the live demo [here](http://ec2-54-215-66-22.us-west-1.compute.amazonaws.com/examples/imgUsingAPI.html)<br/>
 The [file downloader](https://github.com/Peer5/P2PXHR/blob/master/demos/file%20download/index.html) 
 sends an xhr request for receiving a larger file. It indicates the amount of data transferred from peers and regular HTTP. In case no additional peers are downloading the file at the moment, open another tab in incognito mode to see the peer-to-peer magic in action. 
 Check out the live demo [here](http://ec2-54-215-66-22.us-west-1.compute.amazonaws.com/examples/fdUsingAPI.html) 
