@@ -17,11 +17,6 @@ sends an xhr request for receiving an image from the network.
 The [file downloader]() 
 sends an xhr request for receiving a larger file. It indicates the amount of data transferred from peers and regular HTTP. In case no additional peers are downloading the file at the moment, open another tab in incognito mode to see the peer-to-peer magic in action.  
 
-You can check out our anonymous file sharing solution for another live implementations of our API:
-<a href="http://sharefest.me">
-  <img src="" title="Demo app screenshot" alt="Demo app screenshot">
-</a>
-
 Getting started
 ===============
 Basic example of creating a new xhr request using p2pxhr:
@@ -58,9 +53,15 @@ Supported Browsers
 
 * Chrome 26+
 * Firefox 23+
+* Opera 18
+
+Mobile:
+* Chrome 29+
+* Firefox 24+
 * Opera 12
 
-These is derived from the [WebRTC][1] supported browsers
+
+Derived from the [WebRTC][1] supported browsers
 [1]: http://en.wikipedia.org/wiki/WebRTC
 
 
