@@ -1,7 +1,7 @@
-P2PXhr
+P2PXHR
 ======
 
-P2PXhr is a framework that seamlessly power-ups your xhr requests through an on-the-fly peer-to-peer network created from your site's visitors. <br>
+P2PXHR is a framework that seamlessly power-ups your xhr requests through an on-the-fly peer-to-peer network created from your site's visitors. <br>
 It seamlessly chooses between your servers and other peers to get the response. <br>
 It is intended to make your content delivery better by making your content deliver when your servers are loaded.  
 Built on top of [WebRTC][1]. 
