@@ -10,7 +10,7 @@ Built on top of [WebRTC][1].
 Demos
 ===============
 
-Two demo apps are included under [/demos](//github.com/ebidel/idb.filesystem.js/tree/master/demos). 
+Two demo apps are included under [/demos](//github.com/peer5/P2PXHR/tree/master/demos).
 
 The [image request]()
 sends an xhr request for receiving an image from the network. 
