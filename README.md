@@ -51,11 +51,12 @@ This means you can simply search and replace XMLHttpRequest with peer5.Request()
 Supported Browsers
 ==================
 
+Desktop
 * Chrome 26+
 * Firefox 23+
 * Opera 18
 
-Mobile:
+Android:
 * Chrome 29+
 * Firefox 24+
 * Opera 12
