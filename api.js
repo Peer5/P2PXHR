@@ -6,6 +6,36 @@ var peer5_options =
  */
 peer5.Request =  function(peer5_options){
     peer5.Request.prototype = {
+        /* -- Attributes -- */
+        /*
+        The readyState attribute must return the current state, which must be one of the following:
+        UNSENT = 0 - Object has been constructed
+        OPENED = 1 - The method open() has been properly envoked
+        HEADERS_RECEIVED = 2 - All http headers and p2p fileInfo has been received
+        LOADING = 3 - The response is being received
+        DONE = 4 - The data transfer has been completed
+         */
+        this.readyState;
+
+        /*
+        The response attribute returns a reference to the response entity body
+        if responseType is "blobUrl"
+            return the blobUrl of the blob response entity body
+         */
+        this.response;
+
+        /*
+        Returns the response type
+        Values are: empty string (default), "blobUrl",
+         */
+        this.responseType;
+
+        /*
+        Warning:Not implemented
+         */
+        this.timeout;
+
+        /* -- Methods -- */
         /*
         id - either http url for uploading/downloading to/from a server,
         or a swarmId for p2p only case
@@ -36,6 +66,19 @@ peer5.Request =  function(peer5_options){
         getResponseHeader:function(){},
 
         /*
+        Warning:Not implemented
+        Available only when state >=2
+        content-length,content-range, content-disposition,last-modified
+        see http://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Responses
+         */
+        getAllResponseHeaders:function(){},
+
+        /*
+        returns: fileInfo object
+         */
+        getFileInfo:function(){},
+
+        /*
         This method cancels the download, clears all connections, memory and objects
         offline storage remains
         options =
@@ -61,44 +104,33 @@ peer5.Request =  function(peer5_options){
         onreadystatechange: function(e) {},
 
         /*
-         Warning: not implemented
+        Dispatched once when the request starts
+        input: progress event
          */
         onloadstart: function(e) {},
 
         /*
-        called each time a p2p block is received and verified or bubbles up xhr’s onprogress
-        e.loaded - amount of bytes loaded so far in the request
-        e.target.lastTotalLoaded - e.loaded from the last onprogress
-        e.lengthComputable - whether the total request size is available in this event, i.e true or false
-        e.total - file size, available only when e.lengthComputable = true.
-        not implemented - blob-url, or reference to memory blob;
+        Dispatched while sending and loading data: each time a p2p block is received and verified or bubbles up xhr’s onprogress
+        input: progress event
          */
         onprogress: function(e) {},
 
         /*
-        When request was aborted, e.g: envoking abort()
+        Dispatched when request was aborted, e.g: envoking abort()
+        input: progress event
          */
         onabort: function(e) {},
 
         /*
-        onerror is called when there was an error in the request which prevents it to continue.
-        size of asset is too large
-        browser unsupported
-        CORS error
-        HTTP errors
-        e.errorNum - number of error see table x.x TBD
-        e.errorDescription - description of the error (not sure about this one yet)
+        Dispatched when there was an error in the request which prevents it to continue.
+        e.g: size of asset is too large, browser unsupported, CORS error, HTTP errors
+        input: progress event
          */
         onerror:function(e) {},
 
         /*
-        When request was successfully completed
-        e.currentTarget.response (this.response) - contains a reference to the data or blob-url
-        e.fileInfo - A fileInfo object, see object description in table x.x TBD
-        fileInfo:
-        {
-            swarmId
-        }
+        Dispatched when request was successfully completed
+        input: progress event
         */
         onload:function(e) {},
 
@@ -109,11 +141,13 @@ peer5.Request =  function(peer5_options){
         ontimeout:function(e) {},
 
         /*
-        When request was completed (with or without success)
+        Dispatched when request was completed (with or without success)
+        input: progress event
          */
         onloadend:function(e) {},
 
         /*
+        Warning:Not implemented
         Advanced event to monitor swarm and p2p status.
         e.swarmHealth =
         {
@@ -127,9 +161,31 @@ peer5.Request =  function(peer5_options){
     }
 }
 
+/* -- Objects -- */
+
+progressEvent =
+{
+    loaded:123, //number of bytes transfered
+    loadedHTTP:23, //number of bytes transfered via HTTP
+    loadedP2P:100, //number of bytes transfered via WebRTC
+    lengthComputable:true, //If the length of the content is known, attribute is set to true
+    total:1234, //If lengthComputable is true, total is set to content length
+    currentTarget:peer5RequestObject
+}
+
+fileInfo = {
+    swarmId:"9t7e8dc1" //An id that uniquely identifies the content in the tracker
+}
 
 /*  --  Advanced options and methods    --  */
+    /*
+     peer5.DATACHANNELS_ERROR = 0;
+     peer5.WEBSOCKETS_ERROR = 1;
+     peer5.FILESYSTEM_ERROR = 2;
 
+     return: Array of error numbers
+    */
+    peer5.getCompatabilityStatus = function(){};
 
     /*
     Warning: not impelemented
