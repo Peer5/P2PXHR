@@ -35,11 +35,21 @@ peer5.Request =  function(peer5_options){
          */
         this.timeout;
 
+        /*
+        Returns the current status of the request
+        If an error occured returns:
+         peer5.Request.SWARMID_NOT_FOUND_ERR = 650;
+         peer5.Request.FILE_SIZE_ERR = 640;
+         peer5.Request.FIREFOX_ONLY_SWARM_ERR = 641;
+         peer5.Request.CHROME_ONLY_SWARM_ERR = 642;
+         or HTTP status codes
+         */
+        this.status;
+
         /* -- Methods -- */
         /*
         id - either http url for uploading/downloading to/from a server,
         or a swarmId for p2p only case
-        or alias untill there’s a swarmId in the upload p2p case
         method: “GET” / “POST”
         e.g: peer5Request.open(“GET”,”images.google.com/img1.jpg”)
          */
@@ -99,7 +109,8 @@ peer5.Request =  function(peer5_options){
          */
 
         /*
-        Warning: not implemented
+        Dispatched when the readyState attribute is changed
+        input: event
          */
         onreadystatechange: function(e) {},
 
@@ -123,7 +134,8 @@ peer5.Request =  function(peer5_options){
 
         /*
         Dispatched when there was an error in the request which prevents it to continue.
-        e.g: size of asset is too large, browser unsupported, CORS error, HTTP errors
+        e.g: size of resource is too large, browser unsupported, CORS error, HTTP errors
+        The status attribute returns the error number
         input: progress event
          */
         onerror:function(e) {},
@@ -147,22 +159,22 @@ peer5.Request =  function(peer5_options){
         onloadend:function(e) {},
 
         /*
-        Warning:Not implemented
-        Advanced event to monitor swarm and p2p status.
-        e.swarmHealth =
-        {
-            leechers:#;
-            seeders:#;
-            completedDownloads:#
-        } - number of leechers,seeders currently in the swarm, and number of total completedDownloads in the swarm.
-        e.activePeerConnections - number of peers the client is connected to
+        Dispatched when one of the parameters described in the event are changed
+        input: swarm state event
         */
         onswarmstatechange:function(e){}
     }
 }
 
 /* -- Objects -- */
+event =
+{
+    currentTarget:peer5RequestObject
+}
 
+/*
+Inherits from event
+ */
 progressEvent =
 {
     loaded:123, //number of bytes transfered
@@ -170,7 +182,11 @@ progressEvent =
     loadedP2P:100, //number of bytes transfered via WebRTC
     lengthComputable:true, //If the length of the content is known, attribute is set to true
     total:1234, //If lengthComputable is true, total is set to content length
-    currentTarget:peer5RequestObject
+}
+
+swarmStateEvent =
+{
+    numOfPeers:7 //number of peers connected to the client
 }
 
 fileInfo = {
