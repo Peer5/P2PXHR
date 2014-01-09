@@ -1,10 +1,23 @@
 P2PXHR
 ======
 
-P2PXHR is a framework that seamlessly power-ups your xhr requests through an on-the-fly peer-to-peer network created from your site's visitors. <br>
+P2PXHR is a framework that seamlessly power-ups your xhr (AJAX) requests through an on-the-fly peer-to-peer network created from your site's visitors. <br>
 It seamlessly chooses between your servers and other peers to get the response. <br>
 It is intended to make your content delivery better by making your content deliver when your servers are loaded.  
-Built on top of [WebRTC][1]. 
+Built on top of [WebRTC][1] DataChannels.
+
+How
+===
+
+The client side gets a URL indicating the resource that needs to be fetch.
+It then connects to a nodejs service (coordinator) that awares of all users that have/need this resource.
+The coordinator creates a mesh network by connecting peers that most likely can help each other.
+The client in the meantime fetches HTTP chunks using HTTP range requests for some blocks.
+Once connected to other peers the client requests needed blocks from them.
+
+Illustration:
+The client can be connected to 3 peers at the same time, requesting blocks #12, #15, #54 from peer1, #123 from peer2, #58, #59 from peer3 and at the same time serving blocks #2, #3, #4.
+At the same time this client requests blocks #6-#9 from the HTTP server.
 
 
 Demos
