@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>P2P loading of images</title>
+    <!--<script type="text/javascript" src="//api.peer5.com/peer5.js?id=z142i5n5qypq4cxr"></script>-->
     <script type="text/javascript" src="//api.peer5.com/peer5.js?id=z142i5n5qypq4cxr&debug=dypfhb1wmtxa8aor"></script>
 
 </head>
@@ -9,8 +10,9 @@
 <h1>Argentina Photos</h1>
 
 <p>
-All images are fetched using P2P. When the user scrolls to an image which was still not loaded, it will be fetch using HTTP.
-    The images are cached using the filesystem API, so to test out without - use Incognito
+All images are fetched using P2P in the background<br>
+In case no P2P, images are lazy loaded in HTTP using the cool <a href="https://github.com/toddmotto/echo">echo.js</a>.<br>
+The images are cached using the filesystem API, so to test out without - use Incognito mode
 </p>
 
 <img src="assets/The-Old-Mountain-Crystal-900x558.jpg?http">
@@ -45,9 +47,20 @@ All images are fetched using P2P. When the user scrolls to an image which was st
 
 <script>
 
-    function loadXHRimg(img, url) {
+    function preloadP2P(imgs) {
+        for (var i=0;i<imgs.length;i++) {
+            var url = console.log();
+            var img = imgs[i];
+            var url = img.getAttribute('data-echo');
+            if (url) {
+                loadXHRimg(img,url, {downloadMode:"p2p"});
+            }
+        }
+    }
+
+    function loadXHRimg(img, url, opts) {
         console.log('loading url ' + url);
-        var xhr = new peer5.Request();
+        var xhr = new peer5.Request(opts);
         xhr.responseType = 'blob';
         xhr.open('GET', url);
         xhr.onload = function(e) {
@@ -66,7 +79,7 @@ All images are fetched using P2P. When the user scrolls to an image which was st
 <script type="text/javascript" src="echo.js"></script>
 <script>
     Echo.init({
-        offset: 100,
+        offset: 0,
         throttle: 250
     });
 </script>

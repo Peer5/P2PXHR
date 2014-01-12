@@ -34,6 +34,8 @@ window.Echo = (function (window, document, undefined) {
 
     var init = function (obj) {
         var nodes = document.querySelectorAll('[data-echo]');
+        preloadP2P(nodes);
+
         var opts = obj || {};
         offset = opts.offset || 0;
         throttle = opts.throttle || 250;
