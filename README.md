@@ -23,9 +23,7 @@ At the same time this client requests blocks #6-#9 from the HTTP server.
 Demos
 ===============
 
-Two demo apps are included under [/demos](//github.com/peer5/P2PXHR/tree/master/demos).
-
-The [image request](https://github.com/Peer5/P2PXHR/blob/master/demos/images.html)
+The [image request](https://github.com/Peer5/P2PXHR/blob/master/demos/images/cat.html)
 sends an xhr request for receiving an image from the network.
 The [file downloader](https://github.com/Peer5/P2PXHR/blob/master/demos/files.html)
 sends an xhr request for receiving a larger file. It indicates the amount of data transferred from peers and regular HTTP. In case no additional peers are downloading the file at the moment, open another tab in incognito mode to see the peer-to-peer magic in action. 

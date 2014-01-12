@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+    <title>
+        Peer-Assisted image xhr request
+    </title>
+    <script type="text/javascript" src="//api.peer5.com/peer5.js?id=z142i5n5qypq4cxr"></script>
+</head>
+
+<body>
+
+Simple cat request ;)
+
+<img id="cat" src="loading.gif"/>
+<script type="text/javascript">
+
+    var url = "http://commondatastorage.googleapis.com/peer5_vod%2FTurkish_Van_Cat.jpg";
+    var request = new peer5.Request();
+    request.open("GET", url);
+    request.onprogress = function (e) {
+        console.log(e.loadedHTTP);
+        console.log(e.loadedP2P);
+    };
+    request.onload = function (e) {
+        console.log(e.currentTarget.response);
+        document.getElementById("cat").src =  e.currentTarget.response;
+    };
+    request.onerror = function (e) {
+        console.log(e.error);
+    }
+    request.send();
+</script>
+</body>
+</html>
