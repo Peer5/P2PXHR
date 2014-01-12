@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>P2P loading of images</title>
+    <script type="text/javascript" src="//api.peer5.com/peer5.js?id=z142i5n5qypq4cxr&debug=dypfhb1wmtxa8aor"></script>
+
+</head>
+<body>
+<h1>Argentina Photos</h1>
+
+<p>
+All images are fetched using P2P. When the user scrolls to an image which was still not loaded, it will be fetch using HTTP.
+    The images are cached using the filesystem API, so to test out without - use Incognito
+</p>
+
+<img src="assets/The-Old-Mountain-Crystal-900x558.jpg?http">
+
+<h3>Sticks Andes</h3>
+<img src="loading.gif" data-echo="assets/Sticks%20Andes-900x627.jpg?http">
+
+<h3>The wild river</h3>
+<img src="loading.gif" data-echo="assets/The-Wild-River-900x600.jpg?http">
+
+
+<h3>The boats</h3>
+<img src="loading.gif" data-echo="assets/The-Boats-900x576.jpg?http">
+
+
+<h3>Old Mountain Crystal</h3>
+<img src="loading.gif" data-echo="assets/The-Old-Mountain-Crystal-900x558.jpg?http">
+
+<h3>Patagonia!</h3>
+<img src="loading.gif" data-echo="assets/The-Patagonia-900x600.jpg?http">
+
+
+<h3>Old car at sunset</h3>
+<img src="loading.gif" data-echo="assets/Old-Car-at-Sunset-900x600.jpg?http">
+
+
+<h3>Long line</h3>
+<img src="loading.gif" data-echo="assets/Long%20Line-900x525.jpg?http">
+
+
+
+
+<script>
+
+    function loadXHRimg(img, url) {
+        console.log('loading url ' + url);
+        var xhr = new peer5.Request();
+        xhr.responseType = 'blob';
+        xhr.open('GET', url);
+        xhr.onload = function(e) {
+//            if (this.status == 200) {
+//                var blob = this.response;
+
+//                img.src = window.URL.createObjectURL(blob);
+//            }
+            img.src = this.response;
+        };
+
+        xhr.send();
+    }
+
+</script>
+<script type="text/javascript" src="echo.js"></script>
+<script>
+    Echo.init({
+        offset: 100,
+        throttle: 250
+    });
+</script>
+
+
+
+</body>
+</html>
