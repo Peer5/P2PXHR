@@ -61,7 +61,7 @@ The images are cached using the filesystem API, so to test out without - use Inc
     function loadXHRimg(img, url, opts) {
         console.log('loading url ' + url);
         var xhr = new peer5.Request(opts);
-        xhr.responseType = 'blob';
+//        xhr.responseType = 'blob';
         xhr.open('GET', url);
         xhr.onload = function(e) {
 //            if (this.status == 200) {
