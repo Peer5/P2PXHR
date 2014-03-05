@@ -22,7 +22,9 @@ At the same time this client requests blocks #6-#9 from the HTTP server.
 
 Demos
 ===============
-
+[File download demo - live](http://api.peer5.com/P2PXHR/demos/files.html)
+[Simple img demo - live](http://api.peer5.com/P2PXHR/demos/images/cat.html)
+[Lazy load img demo - live](http://api.peer5.com/P2PXHR/demos/images/argentina.html)
 The [image request](https://github.com/Peer5/P2PXHR/blob/master/demos/images/cat.html)
 sends an xhr request for receiving an image from the network.
 The [file downloader](https://github.com/Peer5/P2PXHR/blob/master/demos/files.html)
