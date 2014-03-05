@@ -38,10 +38,12 @@ peer5.Request =  function(peer5_options){
         /*
         Returns the current status of the request
         If an error occured returns:
-         peer5.Request.SWARMID_NOT_FOUND_ERR = 650;
          peer5.Request.FILE_SIZE_ERR = 640;
          peer5.Request.FIREFOX_ONLY_SWARM_ERR = 641;
          peer5.Request.CHROME_ONLY_SWARM_ERR = 642;
+         peer5.Request.BROWSER_SWARM_COMPAT_ERR = 643;
+         peer5.Request.INVALID_RESPONSETYPE = 644;
+         peer5.Request.SWARMID_NOT_FOUND_ERR = 650;
          or HTTP status codes
          */
         this.status;
@@ -187,6 +189,7 @@ progressEvent =
 swarmStateEvent =
 {
     numOfPeers:7 //number of peers connected to the client
+    uploaded:15290 //amount of bytes uploaded by the peer in this swarm
 }
 
 fileInfo = {
@@ -195,13 +198,14 @@ fileInfo = {
 
 /*  --  Advanced options and methods    --  */
     /*
-     peer5.DATACHANNELS_ERROR = 0;
-     peer5.WEBSOCKETS_ERROR = 1;
-     peer5.FILESYSTEM_ERROR = 2;
+     peer5.DATACHANNELS_ERROR = 700;
+     peer5.WEBSOCKETS_ERROR = 701;
+     peer5.FILESYSTEM_ERROR = 702;
 
-     return: Array of error numbers
+     calls the cb with an array of peer5 errors
+     e.g cb([peer5.DATACHANNELS_ERROR,peer5.FILESYSTEM_ERROR]);
     */
-    peer5.getCompatabilityStatus = function(){};
+    peer5.getCompatabilityStatus = function(cb){};
 
     /*
     Warning: not impelemented
