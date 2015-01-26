@@ -26,7 +26,8 @@ peer5.Request =  function(peer5_options){
 
         /*
         Returns the response type
-        Values are: empty string (default), "blobUrl",
+        Values are: empty string (default) - which responds with blobUrl,"arraybuffer","blob".
+        //ToDo: Add "text" which should be default.
          */
         this.responseType;
 
@@ -38,12 +39,15 @@ peer5.Request =  function(peer5_options){
         /*
         Returns the current status of the request
         If an error occured returns:
+         peer5.Request.INVALID_RESPONSETYPE = 669;
+         peer5.Request.SWARMID_NOT_FOUND_ERR = 650;
          peer5.Request.FILE_SIZE_ERR = 640;
          peer5.Request.FIREFOX_ONLY_SWARM_ERR = 641;
          peer5.Request.CHROME_ONLY_SWARM_ERR = 642;
          peer5.Request.BROWSER_SWARM_COMPAT_ERR = 643;
-         peer5.Request.INVALID_RESPONSETYPE = 644;
-         peer5.Request.SWARMID_NOT_FOUND_ERR = 650;
+         peer5.Request.OUT_OF_SPACE_ERR = 644;
+         peer5.Request.WRITE_ERR = 645;
+         peer5.Request.VERIFICATION_ERR = 646;
          or HTTP status codes
          */
         this.status;
@@ -70,7 +74,6 @@ peer5.Request =  function(peer5_options){
         send: function() {},
 
         /*
-        Warning:Not implemented
         Available only when state >= 2
         content-length,content-range, content-disposition,last-modified
         see http://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Responses
@@ -78,7 +81,6 @@ peer5.Request =  function(peer5_options){
         getResponseHeader:function(){},
 
         /*
-        Warning:Not implemented
         Available only when state >=2
         content-length,content-range, content-disposition,last-modified
         see http://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Responses
@@ -86,6 +88,7 @@ peer5.Request =  function(peer5_options){
         getAllResponseHeaders:function(){},
 
         /*
+        Available only when state >=2
         returns: fileInfo object
          */
         getFileInfo:function(){},
@@ -107,7 +110,7 @@ peer5.Request =  function(peer5_options){
 
 
         /* -- EVENTS --
-        These events are null and the user needs to set “listen” to them.
+        These events are null and the user needs to set (“listen” to) them.
          */
 
         /*
@@ -182,6 +185,7 @@ progressEvent =
     loaded:123, //number of bytes transfered
     loadedHTTP:23, //number of bytes transfered via HTTP
     loadedP2P:100, //number of bytes transfered via WebRTC
+    loadedFS:39, //number of bytes loaded from offline storage
     lengthComputable:true, //If the length of the content is known, attribute is set to true
     total:1234, //If lengthComputable is true, total is set to content length
 }
