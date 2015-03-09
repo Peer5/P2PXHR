@@ -28,6 +28,8 @@ Demos
 
 [Lazy load img demo - live](https://peer5.com/P2PXHR/demos/images/argentina.html)
 
+[HLS stream - live](http://demo.peer5.com/examples/video/clappr.html)
+
 The [image request](https://github.com/Peer5/P2PXHR/blob/master/demos/images/cat.html)
 sends an xhr request for receiving an image from the network.
 The [file downloader](https://github.com/Peer5/P2PXHR/blob/master/demos/files.html)

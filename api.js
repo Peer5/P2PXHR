@@ -26,8 +26,7 @@ peer5.Request =  function(peer5_options){
 
         /*
         Returns the response type
-        Values are: empty string (default) - which responds with blobUrl,"arraybuffer","blob".
-        //ToDo: Add "text" which should be default.
+        Values are: empty string (default) - which responds with text,"text","arraybuffer","blob","blobUrl".
          */
         this.responseType;
 
@@ -112,6 +111,12 @@ peer5.Request =  function(peer5_options){
         /* -- EVENTS --
         These events are null and the user needs to set (“listen” to) them.
          */
+
+        /*
+        Adds an event listener by the name specified in eventName with value cb.
+        The event that will be triggered will be of the type listened to. e.g: 'load' event will be triggered with addEventListener:function('load',onloadevent)
+         */
+        addEventListener: function(eventName,cb),
 
         /*
         Dispatched when the readyState attribute is changed
